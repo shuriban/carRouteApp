@@ -26,6 +26,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     WebView webView;
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //убрать шапку в приложении
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
 
         webView = (WebView) findViewById(R.id.webview);
@@ -95,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         checkLocationPermission();
-
-        webView.loadUrl("https://car-route.ru/");
+        Map<String, String> extraHeaders = new HashMap<String, String>();
+        extraHeaders.put("AuthAndroid","ShuribanFirstApp");
+        webView.loadUrl("https://car-route.ru/", extraHeaders);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

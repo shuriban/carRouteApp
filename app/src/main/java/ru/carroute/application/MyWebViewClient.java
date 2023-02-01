@@ -11,7 +11,7 @@ public class MyWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         if ("car-route.ru".equals(request.getUrl().getHost()) ||
         "accounts.google.com".equals(request.getUrl().getHost())) {
-            // This is my website, so do not override; let my WebView load the page
+            // @TODO For accounts.google.com create oAuth methods
             return false;
         }
         // Otherwise, the link is not for a page on my site, so launch another Activity that handles URLs
